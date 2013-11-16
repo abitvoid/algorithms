@@ -29,6 +29,7 @@ public class FastInsert {
         CSVWrapper cw = CSVWrapper.newInstance(Constants.Linux.totalDir);
 
         System.out.println("程序即将开始，" + threadCount + " 线程并行");
+
         clock.put(0, System.currentTimeMillis());
         for (int i = 0; i < threadCount; i++) {
             new InsertThread(phaser, cw).start();
@@ -41,6 +42,7 @@ public class FastInsert {
 
         System.out.println("read: " + cw.getCount());
         System.out.println("error: " + cw.getErrorCount());
+        System.out.println("总用时：" + (System.currentTimeMillis() - clock.get(0)) / (1000 * 60) + " 分钟");
         // 跳出上面循环后，意味着phaser终结，即3个工作线程已经结束
         System.out.println("程序结束");
     }
