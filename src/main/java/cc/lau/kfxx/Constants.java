@@ -6,8 +6,8 @@ public interface Constants {
     public final int DEFAULT_INSERT_LIMIT = 5000;
     public final int THREAD_COUNT = 4;
 
-    public final String DATA_HOME = "/home/lau/bigdata";
-//    public final String DATA_HOME = "/media/lau/Data/bigdata";
+    // public final String DATA_HOME = "/home/lau/bigdata";
+    public final String DATA_HOME = "/media/lau/Data/bigdata";
 
     public interface Linux {
         public String fname = DATA_HOME + "/2000W/1-200W.csv";
