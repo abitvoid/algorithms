@@ -14,7 +14,7 @@ import java.util.concurrent.Phaser;
 public class FastInsert {
     public static void main(String[] args) {
         final Map<Integer, Long> clock = new ConcurrentHashMap<>();
-        int threadCount = Constants.THREAD_COUNT;
+        int threadCount = Constants.THREAD_COUNT / 2;
 
         Phaser phaser = new Phaser(threadCount) {
             @Override
@@ -66,7 +66,7 @@ class InsertThread extends Thread {
     public void run() {
         while (!phaser.isTerminated()) {
             List<DBObject> mobjs;
-            if ((mobjs = cw.getFixNumberMobjs(Constants.DEFAULT_INSERT_LIMIT)).size() > 0) {
+            if ((mobjs = cw.getFixNumberMobjs(Constants.DEFAULT_INSERT_LIMIT * 2)).size() > 0) {
                 insert(mobjs);
                 phaser.arriveAndAwaitAdvance();
             } else {
